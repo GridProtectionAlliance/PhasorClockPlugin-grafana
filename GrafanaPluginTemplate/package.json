@@ -1,0 +1,9 @@
+{
+  "name": "grafana-plugin-template",
+  "version": "0.0.0",
+  "description": "GrafanaPluginTemplate",
+  "main": "app.js",
+  "author": {
+    "name": "bernest"
+  }
+}
