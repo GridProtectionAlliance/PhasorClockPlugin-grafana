@@ -28,6 +28,19 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,10 +48,10 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\module.html">
+    <Content Include="module.html">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\plugin.json">
+    <Content Include="plugin.json">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
@@ -48,13 +61,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\grafanaPluginTemplate_ctrl.ts">
+    <TypeScriptCompile Include="grafanaPluginTemplate_ctrl.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\module.ts">
+    <TypeScriptCompile Include="module.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

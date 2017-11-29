@@ -7,6 +7,9 @@
   },
   "author": "Grid Protection Alliance",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks"
+  }
 
 }
