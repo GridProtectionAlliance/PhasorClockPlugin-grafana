@@ -1,11 +1,27 @@
 ///<reference path="node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const sdk_1 = require("app/plugins/sdk");
-class GrafanaPluginTemplateCtrl extends sdk_1.MetricsPanelCtrl {
-    constructor($scope, $injector, $rootScope) {
-        super($scope, $injector);
+System.register(['app/plugins/sdk'], function(exports_1) {
+    var __extends = (this && this.__extends) || function (d, b) {
+        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+    var sdk_1;
+    var GrafanaPluginTemplateCtrl;
+    return {
+        setters:[
+            function (sdk_1_1) {
+                sdk_1 = sdk_1_1;
+            }],
+        execute: function() {
+            GrafanaPluginTemplateCtrl = (function (_super) {
+                __extends(GrafanaPluginTemplateCtrl, _super);
+                function GrafanaPluginTemplateCtrl($scope, $injector, $rootScope) {
+                    _super.call(this, $scope, $injector);
+                }
+                return GrafanaPluginTemplateCtrl;
+            })(sdk_1.MetricsPanelCtrl);
+            exports_1("GrafanaPluginTemplateCtrl", GrafanaPluginTemplateCtrl);
+        }
     }
-}
-exports.GrafanaPluginTemplateCtrl = GrafanaPluginTemplateCtrl;
+});
 //# sourceMappingURL=grafanaPluginTemplate_ctrl.js.map
