@@ -1,4 +1,4 @@
-///<reference path="node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
+///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 System.register(['app/plugins/sdk'], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -13,11 +13,14 @@ System.register(['app/plugins/sdk'], function(exports_1) {
                 sdk_1 = sdk_1_1;
             }],
         execute: function() {
+            //import { varName } from '../js/constants'   // import constants from constant file using this format
             GrafanaPluginTemplateCtrl = (function (_super) {
                 __extends(GrafanaPluginTemplateCtrl, _super);
                 function GrafanaPluginTemplateCtrl($scope, $injector, $rootScope) {
                     _super.call(this, $scope, $injector);
+                    this.$rootScope = $rootScope;
                 }
+                GrafanaPluginTemplateCtrl.templateUrl = 'partials/module.html';
                 return GrafanaPluginTemplateCtrl;
             })(sdk_1.MetricsPanelCtrl);
             exports_1("GrafanaPluginTemplateCtrl", GrafanaPluginTemplateCtrl);
