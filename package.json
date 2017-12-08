@@ -1,5 +1,5 @@
 {
-  "name": "phasorclock-plugin-template",
+  "name": "phasorclock-plugin",
   "version": "0.0.0",
   "description": "Phasorclock plugin typescript template.",
   "scripts": {
