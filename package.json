@@ -1,7 +1,7 @@
 {
-  "name": "grafana-plugin-template",
+  "name": "phasorclock-plugin-template",
   "version": "0.0.0",
-  "description": "Grafana plugin typescript template.",
+  "description": "Phasorclock plugin typescript template.",
   "scripts": {
     "build": "grunt"
   },
