@@ -1,0 +1,53 @@
+﻿<div class="editor-row">
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Data Setup</h5>
+
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Phasor Magnitude</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.phasorMag" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Phasor Angle</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.phasorAng" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Reference Magnitude</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.refMag" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Reference Angle</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.refAng" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Graph Options</h5>
+
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Angle Segments</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.numAngSegments" ng-change="ctrl.updateHeatMapObject()"/>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Segments</label>
+            <input class="input-small gf-form-input"  type="number" ng-model="ctrl.panel.numMagSegments" ng-change="ctrl.updateHeatMapObject()"/>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Step</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.magStep" ng-change="ctrl.updateHeatMapObject()" />
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Start</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.magStart" ng-change="ctrl.updateHeatMapObject()" />
+        </div>
+    </div>
+
+</div>
