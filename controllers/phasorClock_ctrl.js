@@ -1,25 +1,3 @@
-//******************************************************************************************************
-//  phasorClock_ctrl.ts - Gbtc
-//
-//  Copyright © 2017, Grid Protection Alliance.  All Rights Reserved.
-//
-//  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
-//  the NOTICE file distributed with this work for additional information regarding copyright ownership.
-//  The GPA licenses this file to you under the MIT License (MIT), the "License"; you may not use this
-//  file except in compliance with the License. You may obtain a copy of the License at:
-//
-//      http://opensource.org/licenses/MIT
-//
-//  Unless agreed to in writing, the subject software distributed under the License is distributed on an
-//  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
-//  License for the specific language governing permissions and limitations.
-//
-//  Code Modification History:
-//  ----------------------------------------------------------------------------------------------------
-//  12/08/2017 - Billy Ernest
-//       Generated original version of source code.
-//
-//******************************************************************************************************
 System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
@@ -49,29 +27,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                 lodash_1 = lodash_1_1;
             }
         ],
-        execute: function () {//******************************************************************************************************
-            //  phasorClock_ctrl.ts - Gbtc
-            //
-            //  Copyright © 2017, Grid Protection Alliance.  All Rights Reserved.
-            //
-            //  Licensed to the Grid Protection Alliance (GPA) under one or more contributor license agreements. See
-            //  the NOTICE file distributed with this work for additional information regarding copyright ownership.
-            //  The GPA licenses this file to you under the MIT License (MIT), the "License"; you may not use this
-            //  file except in compliance with the License. You may obtain a copy of the License at:
-            //
-            //      http://opensource.org/licenses/MIT
-            //
-            //  Unless agreed to in writing, the subject software distributed under the License is distributed on an
-            //  "AS-IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. Refer to the
-            //  License for the specific language governing permissions and limitations.
-            //
-            //  Code Modification History:
-            //  ----------------------------------------------------------------------------------------------------
-            //  12/08/2017 - Billy Ernest
-            //       Generated original version of source code.
-            //
-            //******************************************************************************************************
-            //import { varName } from '../js/constants'   // import constants from constant file using this format
+        execute: function () {
             PhasorClockCtrl = (function (_super) {
                 __extends(PhasorClockCtrl, _super);
                 function PhasorClockCtrl($scope, $injector, $rootScope) {
@@ -82,7 +38,6 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     _this.events.on('render', _this.onRender.bind(_this));
                     _this.events.on('panel-initialized', _this.onPanelInitialized.bind(_this));
                     _this.events.on('data-received', _this.onDataRecieved.bind(_this));
-                    //this.events.on('data-snapshot-load', console.log('data-snapshot-load'));
                     _this.events.on('data-error', _this.onDataError.bind(_this));
                     _this.events.on('refresh', _this.onRefresh.bind(_this));
                     _this.panel.phasorMag = (_this.panel.phasorMag != undefined ? _this.panel.phasorMag : '');
@@ -93,6 +48,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     _this.panel.numMagSegments = (_this.panel.numMagSegments != undefined ? _this.panel.numMagSegments : 4);
                     _this.panel.magStep = (_this.panel.magStep != undefined ? _this.panel.magStep : 0.5);
                     _this.panel.magStart = (_this.panel.magStart != undefined ? _this.panel.magStart : 0);
+                    _this.panel.range = (_this.panel.range != undefined ? _this.panel.range : ['white', "#01579b"]);
                     _this.panel.div = "canvas_" + _this.panel.id;
                     _this.panel.height = _this.row.height;
                     _this.$scope.domElement = '#canvas_' + _this.panel.id;
@@ -101,26 +57,19 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     _this.updateHeatMapObject();
                     return _this;
                 }
-                // #region Events from Graphana Handlers
                 PhasorClockCtrl.prototype.onInitEditMode = function () {
                     this.addEditorTab('Options', 'public/plugins/phasorclock-plugin/partials/editor.html', 2);
-                    //console.log('init-edit-mode');
                 };
                 PhasorClockCtrl.prototype.onPanelTeardown = function () {
-                    //console.log('panel-teardown');
                 };
                 PhasorClockCtrl.prototype.onPanelInitialized = function () {
-                    //console.log('panel-initialized');
                 };
                 PhasorClockCtrl.prototype.onRefresh = function () {
-                    //console.log('refresh');
                 };
                 PhasorClockCtrl.prototype.onResize = function () {
                     var ctrl = this;
-                    //console.log('refresh');
                 };
                 PhasorClockCtrl.prototype.onRender = function () {
-                    //console.log('render');
                 };
                 PhasorClockCtrl.prototype.onDataRecieved = function (data) {
                     var _this = this;
@@ -137,74 +86,30 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                             ++_this.heatMap[angle.toString() + '_' + mag.toString()].value;
                         }
                     });
-                    var range = ["white", "#01579b"];
-                    var inputData = [{ month: 1, type: "Category 1", value: 25 },
-                        { month: 2, type: "Category 1", value: 15 },
-                        { month: 3, type: "Category 1", value: 27 },
-                        { month: 4, type: "Category 1", value: 10 },
-                        { month: 5, type: "Category 1", value: 54 },
-                        { month: 6, type: "Category 1", value: 23 },
-                        { month: 7, type: "Category 1", value: 31 },
-                        { month: 8, type: "Category 1", value: 17 },
-                        { month: 9, type: "Category 1", value: 8 },
-                        { month: 10, type: "Category 1", value: 12 },
-                        { month: 11, type: "Category 1", value: 32 },
-                        { month: 12, type: "Category 1", value: 35 },
-                        { month: 1, type: "Category 2", value: 19 },
-                        { month: 2, type: "Category 2", value: 24 },
-                        { month: 3, type: "Category 2", value: 27 },
-                        { month: 4, type: "Category 2", value: 12 },
-                        { month: 5, type: "Category 2", value: 19 },
-                        { month: 6, type: "Category 2", value: 30 },
-                        { month: 7, type: "Category 2", value: 31 },
-                        { month: 8, type: "Category 2", value: 25 },
-                        { month: 9, type: "Category 2", value: 20 },
-                        { month: 10, type: "Category 2", value: 5 },
-                        { month: 11, type: "Category 2", value: 21 },
-                        { month: 12, type: "Category 2", value: 10 },
-                        { month: 1, type: "Category 3", value: 19 },
-                        { month: 2, type: "Category 3", value: 3 },
-                        { month: 3, type: "Category 3", value: 32 },
-                        { month: 4, type: "Category 3", value: 23 },
-                        { month: 5, type: "Category 3", value: 9 },
-                        { month: 6, type: "Category 3", value: 17 },
-                        { month: 7, type: "Category 3", value: 25 },
-                        { month: 8, type: "Category 3", value: 29 },
-                        { month: 9, type: "Category 3", value: 32 },
-                        { month: 10, type: "Category 3", value: 33 },
-                        { month: 11, type: "Category 3", value: 19 },
-                        { month: 12, type: "Category 3", value: 24 },
-                        { month: 1, type: "Category 4", value: 12 },
-                        { month: 2, type: "Category 4", value: 43 },
-                        { month: 3, type: "Category 4", value: 12 },
-                        { month: 4, type: "Category 4", value: 23 },
-                        { month: 5, type: "Category 4", value: 14 },
-                        { month: 6, type: "Category 4", value: 19 },
-                        { month: 7, type: "Category 4", value: 22 },
-                        { month: 8, type: "Category 4", value: 39 },
-                        { month: 9, type: "Category 4", value: 22 },
-                        { month: 10, type: "Category 4", value: 26 },
-                        { month: 11, type: "Category 4", value: 31 },
-                        { month: 12, type: "Category 4", value: 25 },
-                    ];
-                    this.loadCircularHeatMap(this.$scope.domElement, range);
+                    this.loadCircularHeatMap();
                 };
                 PhasorClockCtrl.prototype.onDataError = function (msg) {
-                    //console.log('data-error');
                 };
-                // #endregion
-                PhasorClockCtrl.prototype.loadCircularHeatMap = function (dom_element_to_append_to, range) {
+                PhasorClockCtrl.prototype.setStartColor = function (newColor) {
+                    this.panel.range[0] = newColor;
+                    this.refresh();
+                };
+                PhasorClockCtrl.prototype.setEndColor = function (newColor) {
+                    this.panel.range[1] = newColor;
+                    this.refresh();
+                };
+                PhasorClockCtrl.prototype.loadCircularHeatMap = function () {
                     var _this = this;
                     var dataset = Object.keys(this.heatMap).map(function (a) { return _this.heatMap[a]; });
-                    var margin = { top: 50, right: 50, bottom: 50, left: 50 };
-                    var width = 600 - margin.left - margin.right;
-                    var height = width;
-                    var innerRadius = width / 14;
+                    var margin = { top: 0, right: 0, bottom: 0, left: 0 };
+                    var width = jquery_1.default(this.$scope.domElement).width() - margin.left - margin.right;
+                    var height = this.panel.height - 37;
+                    var innerRadius = width / 25;
                     var numSegments = this.panel.numMagSegments;
-                    var segmentHeight = (width - margin.top - margin.bottom - 2 * innerRadius) / (2 * numSegments);
-                    var chart = new CircularHeatChart(innerRadius, this.panel.numAngSegments, segmentHeight, range);
-                    jquery_1.default(dom_element_to_append_to).children().remove();
-                    var svg = d3_1.default.select(dom_element_to_append_to)
+                    var segmentHeight = (height - margin.top - margin.bottom - 2 * innerRadius) / (2 * numSegments);
+                    var chart = new CircularHeatChart(innerRadius, this.panel.numAngSegments, segmentHeight, this.panel.range);
+                    jquery_1.default(this.$scope.domElement).children().remove();
+                    var svg = d3_1.default.select(this.$scope.domElement)
                         .selectAll('svg')
                         .data([dataset])
                         .enter()
@@ -214,7 +119,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                         .append('g')
                         .attr("transform", "translate(" + ((width) / 2 - (numSegments * segmentHeight + innerRadius)) + "," + margin.top + ")")
                         .call(chart.createChart.bind(chart));
-                    var tooltip = d3_1.default.select(dom_element_to_append_to)
+                    var tooltip = d3_1.default.select(this.$scope.domElement)
                         .append('div')
                         .attr('class', 'tooltip');
                     tooltip.append('div')
@@ -227,7 +132,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                         .on('mouseover', function (d) {
                         tooltip.select('.month').html("<b> Angle: " + d.angle + "</b>");
                         tooltip.select('.type').html("<b> Magnitude: " + d.magnitude + "</b>");
-                        tooltip.select('.value').html("<b> Value: " + d.value + "</b>");
+                        tooltip.select('.value').html("<b> Count: " + d.value + "</b>");
                         tooltip.style('display', 'block');
                         tooltip.style('opacity', 2);
                     })
@@ -263,16 +168,16 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                         }
                     }
                 };
+                PhasorClockCtrl.templateUrl = 'partials/module.html';
                 return PhasorClockCtrl;
             }(sdk_1.MetricsPanelCtrl));
-            PhasorClockCtrl.templateUrl = 'partials/module.html';
             exports_1("PhasorClockCtrl", PhasorClockCtrl);
             CircularHeatChart = (function () {
                 function CircularHeatChart(innerRadius, numSegments, segmentHeight, range) {
                     this.ea = function (d, i) {
                         return ((i + 1) * 2 * Math.PI) / this.numSegments;
                     };
-                    this.margin = { top: 20, right: 20, bottom: 20, left: 20 };
+                    this.margin = { top: 0, right: 0, bottom: 0, left: 0 };
                     this.innerRadius = innerRadius;
                     this.numSegments = numSegments;
                     this.segmentHeight = segmentHeight;
@@ -303,7 +208,6 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                             .attr("fill", function (d) { return color(ctrl.accessor(d)); });
                     });
                 };
-                /* Arc functions */
                 CircularHeatChart.prototype.ir = function (d, i) {
                     return this.innerRadius + Math.floor(i / this.numSegments) * this.segmentHeight;
                 };

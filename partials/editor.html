@@ -48,6 +48,16 @@
             <label class="gf-form-label width-14">Magnitude Start</label>
             <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.magStart" ng-change="ctrl.updateHeatMapObject()" />
         </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Color Range</label>
+            <div class="graph-legend-popover">
+                <span class="gf-form-label">
+                    <color-picker color="ctrl.panel.range[0]" onChange="ctrl.setStartColor.bind(ctrl)"></color-picker>
+                    <color-picker color="ctrl.panel.range[1]" onChange="ctrl.setEndColor.bind(ctrl)"></color-picker>
+                </span>
+            </div>
+        </div>
+
     </div>
 
 </div>

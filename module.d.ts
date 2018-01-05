@@ -1,2 +1,2 @@
-import { GrafanaPluginTemplateCtrl } from './controllers/grafanaPluginTemplate_ctrl';
-export { GrafanaPluginTemplateCtrl as PanelCtrl };
+import { PhasorClockCtrl } from './controllers/phasorClock_ctrl';
+export { PhasorClockCtrl as PanelCtrl };

@@ -9,13 +9,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks",
-    "grunt": "1.0.1",
-    "grunt-cli": "1.2.0",
-    "grunt-typescript": "0.8.0",
-    "grunt-contrib-watch": "1.0.0",
-    "load-grunt-tasks": "3.5.2",
-    "typescript": "2.6.2"
+    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks"
   }
 
 }
