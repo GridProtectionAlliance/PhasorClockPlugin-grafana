@@ -54,7 +54,6 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     _this.$scope.domElement = '#canvas_' + _this.panel.id;
                     _this.angStepSize = 360 / _this.panel.numAngSegments;
                     _this.elements = [];
-                    _this.updateHeatMapObject();
                     return _this;
                 }
                 PhasorClockCtrl.prototype.onInitEditMode = function () {
@@ -78,6 +77,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     var magPoints = data.find(function (a) { return a.target == _this.panel.phasorMag.Name; });
                     var refAngPoints = data.find(function (a) { return a.target == _this.panel.refAng.Name; });
                     var refMagPoints = data.find(function (a) { return a.target == _this.panel.refMag.Name; });
+                    this.updateHeatMapObject();
                     lodash_1.default.each(anglePoints.datapoints, function (d, i) {
                         if (magPoints.datapoints[i][1] == d[1]) {
                             var a = refAngPoints.datapoints[i][0] - d[0];
@@ -104,7 +104,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     var margin = { top: 0, right: 0, bottom: 0, left: 0 };
                     var width = jquery_1.default(this.$scope.domElement).width() - margin.left - margin.right;
                     var height = this.panel.height - 37;
-                    var innerRadius = width / 25;
+                    var innerRadius = 20;
                     var numSegments = this.panel.numMagSegments;
                     var segmentHeight = (height - margin.top - margin.bottom - 2 * innerRadius) / (2 * numSegments);
                     var chart = new CircularHeatChart(innerRadius, this.panel.numAngSegments, segmentHeight, this.panel.range);

@@ -65,8 +65,6 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         this.angStepSize = 360 / this.panel.numAngSegments;
    
         this.elements = [];
-
-        this.updateHeatMapObject();
     }
 
     // #region Events from Graphana Handlers
@@ -105,6 +103,7 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         var magPoints = data.find((a) => { return a.target == this.panel.phasorMag.Name });
         var refAngPoints = data.find((a) => { return a.target == this.panel.refAng.Name });
         var refMagPoints = data.find((a) => { return a.target == this.panel.refMag.Name });
+        this.updateHeatMapObject();
 
         _.each(anglePoints.datapoints, (d, i) => {
             if (magPoints.datapoints[i][1] == d[1])
