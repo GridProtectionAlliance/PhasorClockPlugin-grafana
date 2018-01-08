@@ -79,10 +79,14 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     var refMagPoints = data.find(function (a) { return a.target == _this.panel.refMag.Name; });
                     this.updateHeatMapObject();
                     lodash_1.default.each(anglePoints.datapoints, function (d, i) {
-                        if (magPoints.datapoints[i][1] == d[1]) {
-                            var a = refAngPoints.datapoints[i][0] - d[0];
+                        if (magPoints.datapoints.length > i && magPoints.datapoints[i][1] == d[1]) {
+                            var a = d[0];
+                            if (refAngPoints != null && refAngPoints.datapoints.length > i)
+                                a = refAngPoints.datapoints[i][0] - d[0];
                             var angle = Math.trunc(_this.fixAngle2(a) / _this.angStepSize) * _this.angStepSize;
-                            var mag = Math.trunc((magPoints.datapoints[i][0] / refMagPoints.datapoints[i][0]) / _this.panel.magStep) * _this.panel.magStep;
+                            var mag = Math.trunc((magPoints.datapoints[i][0]) / _this.panel.magStep) * _this.panel.magStep;
+                            if (refMagPoints != null && refMagPoints.datapoints.length > i)
+                                mag = Math.trunc((magPoints.datapoints[i][0] / refMagPoints.datapoints[i][0]) / _this.panel.magStep) * _this.panel.magStep;
                             ++_this.heatMap[angle.toString() + '_' + mag.toString()].value;
                         }
                     });
@@ -157,6 +161,10 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     while (angle < 0)
                         angle += 360;
                     return angle % 360;
+                };
+                PhasorClockCtrl.prototype.updateSettings = function () {
+                    this.updateHeatMapObject();
+                    this.refresh();
                 };
                 PhasorClockCtrl.prototype.updateHeatMapObject = function () {
                     this.heatMap = {};

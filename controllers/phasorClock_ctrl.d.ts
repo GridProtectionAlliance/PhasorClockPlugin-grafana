@@ -20,5 +20,6 @@ export declare class PhasorClockCtrl extends MetricsPanelCtrl {
     loadCircularHeatMap(): void;
     fixAngle(angle: any): any;
     fixAngle2(angle: any): number;
+    updateSettings(): void;
     updateHeatMapObject(): void;
 }

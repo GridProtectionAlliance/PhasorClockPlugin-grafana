@@ -106,11 +106,19 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         this.updateHeatMapObject();
 
         _.each(anglePoints.datapoints, (d, i) => {
-            if (magPoints.datapoints[i][1] == d[1])
+            if ( magPoints.datapoints.length > i && magPoints.datapoints[i][1] == d[1])
             {
-                var a = refAngPoints.datapoints[i][0] - d[0];
+                var a = d[0];
+                if(refAngPoints != null && refAngPoints.datapoints.length > i)
+                    a = refAngPoints.datapoints[i][0] - d[0];
+
                 var angle = Math.trunc(this.fixAngle2(a) / this.angStepSize) * this.angStepSize;
-                var mag = Math.trunc((magPoints.datapoints[i][0] / refMagPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
+
+               
+                var mag = Math.trunc((magPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
+                if(refMagPoints != null && refMagPoints.datapoints.length > i)
+                 mag = Math.trunc((magPoints.datapoints[i][0]/refMagPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
+
                 ++this.heatMap[angle.toString() + '_' + mag.toString()].value;
 
             }
@@ -203,6 +211,12 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         while (angle < 0)
             angle += 360;
         return angle % 360;
+    }
+
+    updateSettings(){
+        
+        this.updateHeatMapObject();
+        this.refresh();
     }
 
     updateHeatMapObject() {
