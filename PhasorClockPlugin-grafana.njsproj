@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="controllers\phasorClock_ctrl.ts" />
-    <TypeScriptCompile Include="js\constants.ts" />
     <TypeScriptCompile Include="module.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -67,6 +66,11 @@
     <Folder Include="controllers\" />
     <Folder Include="js\" />
     <Folder Include="partials\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="js\math.js">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

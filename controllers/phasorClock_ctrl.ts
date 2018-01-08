@@ -24,11 +24,10 @@
 ///<reference path="../node_modules/grafana-sdk-mocks/app/headers/common.d.ts" />
 
 import { MetricsPanelCtrl } from 'app/plugins/sdk';
-import $ from "jquery"
-import d3 from "d3"
-import _ from "lodash"
-
-//import { varName } from '../js/constants'   // import constants from constant file using this format
+import $ from "jquery";
+import d3 from "d3";
+import _ from "lodash";
+import * as math from "./../js/math.js";
 
 export class PhasorClockCtrl extends MetricsPanelCtrl{
     static templateUrl:string = 'partials/module.html';
@@ -119,7 +118,7 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
                 if(refMagPoints != null && refMagPoints.datapoints.length > i)
                  mag = Math.trunc((magPoints.datapoints[i][0]/refMagPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
 
-                ++this.heatMap[angle.toString() + '_' + mag.toString()].value;
+                ++this.heatMap[math.format(angle, {precision: 5}).toString() + '_' + math.format(mag, {precision: 5}).toString()].value;
 
             }
         });
@@ -225,8 +224,8 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
 
         for (var j = this.panel.magStart; j < (this.panel.numMagSegments * this.panel.magStep + this.panel.magStart); j += this.panel.magStep) {
             for (var i = 0; i < 360; i += this.angStepSize) {
-                var step = (Math.trunc(j / this.panel.magStep) * this.panel.magStep).toString();
-                this.heatMap[i.toString() + '_' + step] = { angle: i, magnitude: step, value: 0 };
+                var step = math.format((Math.trunc(j / this.panel.magStep) * this.panel.magStep), {precision: 5}).toString();
+                this.heatMap[math.format(i, {precision: 5}).toString() + '_' + step] = { angle: i, magnitude: step, value: 0 };
             }
         }
 

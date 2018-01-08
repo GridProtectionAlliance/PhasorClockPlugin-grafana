@@ -1,4 +1,4 @@
-System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports_1, context_1) {
+System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"], function (exports_1, context_1) {
     "use strict";
     var __extends = (this && this.__extends) || (function () {
         var extendStatics = Object.setPrototypeOf ||
@@ -11,7 +11,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
         };
     })();
     var __moduleName = context_1 && context_1.id;
-    var sdk_1, jquery_1, d3_1, lodash_1, PhasorClockCtrl, CircularHeatChart;
+    var sdk_1, jquery_1, d3_1, lodash_1, math, PhasorClockCtrl, CircularHeatChart;
     return {
         setters: [
             function (sdk_1_1) {
@@ -25,6 +25,9 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
             },
             function (lodash_1_1) {
                 lodash_1 = lodash_1_1;
+            },
+            function (math_1) {
+                math = math_1;
             }
         ],
         execute: function () {
@@ -87,7 +90,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                             var mag = Math.trunc((magPoints.datapoints[i][0]) / _this.panel.magStep) * _this.panel.magStep;
                             if (refMagPoints != null && refMagPoints.datapoints.length > i)
                                 mag = Math.trunc((magPoints.datapoints[i][0] / refMagPoints.datapoints[i][0]) / _this.panel.magStep) * _this.panel.magStep;
-                            ++_this.heatMap[angle.toString() + '_' + mag.toString()].value;
+                            ++_this.heatMap[math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()].value;
                         }
                     });
                     this.loadCircularHeatMap();
@@ -171,8 +174,8 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash"], function (exports
                     this.angStepSize = 360 / this.panel.numAngSegments;
                     for (var j = this.panel.magStart; j < (this.panel.numMagSegments * this.panel.magStep + this.panel.magStart); j += this.panel.magStep) {
                         for (var i = 0; i < 360; i += this.angStepSize) {
-                            var step = (Math.trunc(j / this.panel.magStep) * this.panel.magStep).toString();
-                            this.heatMap[i.toString() + '_' + step] = { angle: i, magnitude: step, value: 0 };
+                            var step = math.format((Math.trunc(j / this.panel.magStep) * this.panel.magStep), { precision: 5 }).toString();
+                            this.heatMap[math.format(i, { precision: 5 }).toString() + '_' + step] = { angle: i, magnitude: step, value: 0 };
                         }
                     }
                 };
