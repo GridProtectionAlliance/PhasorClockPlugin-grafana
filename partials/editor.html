@@ -3,30 +3,21 @@
         <h5 class="section-heading">Data Setup</h5>
 
         <div class="gf-form">
-            <label class="gf-form-label width-12">Phasor Magnitude</label>
+            <label class="gf-form-label width-12">Magnitude</label>
             <div class="gf-form-select-wrapper">
                 <select class="gf-form-input" ng-model="ctrl.panel.phasorMag" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
             </div>
         </div>
         <div class="gf-form">
-            <label class="gf-form-label width-12">Phasor Angle</label>
+            <label class="gf-form-label width-12">Nominal Mag Value</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.nominalMagValue" ng-change="ctrl.updateSettings()" />
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Angle</label>
             <div class="gf-form-select-wrapper">
                 <select class="gf-form-input" ng-model="ctrl.panel.phasorAng" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
             </div>
         </div>
-        <div class="gf-form">
-            <label class="gf-form-label width-12">Reference Magnitude</label>
-            <div class="gf-form-select-wrapper">
-                <select class="gf-form-input" ng-model="ctrl.panel.refMag" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
-            </div>
-        </div>
-        <div class="gf-form">
-            <label class="gf-form-label width-12">Reference Angle</label>
-            <div class="gf-form-select-wrapper">
-                <select class="gf-form-input" ng-model="ctrl.panel.refAng" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
-            </div>
-        </div>
-
     </div>
 
     <div class="section gf-form-group">

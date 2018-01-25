@@ -48,8 +48,8 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
 
         this.panel.phasorMag = (this.panel.phasorMag != undefined ? this.panel.phasorMag : '');
         this.panel.phasorAng = (this.panel.phasorAng != undefined ? this.panel.phasorAng : '');
-        this.panel.refMag = (this.panel.refMag != undefined ? this.panel.refMag : '');
-        this.panel.refAng = (this.panel.refAng != undefined ? this.panel.refAng : '');
+        this.panel.nominalMagValue = (this.panel.nominalMagValue != undefined ? this.panel.nominalMagValue : 1);
+
         this.panel.numAngSegments = (this.panel.numAngSegments != undefined ? this.panel.numAngSegments : 360);
         this.panel.numMagSegments = (this.panel.numMagSegments != undefined ? this.panel.numMagSegments : 4);
         this.panel.magStep = (this.panel.magStep != undefined ? this.panel.magStep : 0.5);
@@ -96,29 +96,24 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
     }
 
     onDataRecieved(data) {
-        this.elements = data.map((a, i) => { return { id: i, Name: a.rootTarget } });
+        this.elements = data.map((a, i) => { return { id: i, Name: a.target } });
 
         var anglePoints = data.find((a) => { return a.target == this.panel.phasorAng.Name });
         var magPoints = data.find((a) => { return a.target == this.panel.phasorMag.Name });
-        var refAngPoints = data.find((a) => { return a.target == this.panel.refAng.Name });
-        var refMagPoints = data.find((a) => { return a.target == this.panel.refMag.Name });
+
         this.updateHeatMapObject();
 
         _.each(anglePoints.datapoints, (d, i) => {
             if ( magPoints.datapoints.length > i && magPoints.datapoints[i][1] == d[1])
             {
                 var a = d[0];
-                if(refAngPoints != null && refAngPoints.datapoints.length > i)
-                    a = refAngPoints.datapoints[i][0] - d[0];
-
                 var angle = Math.trunc(this.fixAngle2(a) / this.angStepSize) * this.angStepSize;
-
+                var nv = this.panel.nominalMagValue;
                
-                var mag = Math.trunc((magPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
-                if(refMagPoints != null && refMagPoints.datapoints.length > i)
-                 mag = Math.trunc((magPoints.datapoints[i][0]/refMagPoints.datapoints[i][0])/this.panel.magStep) * this.panel.magStep;
+                var mag = Math.trunc(((magPoints.datapoints[i][0] - nv)/nv)/this.panel.magStep) * this.panel.magStep;
 
-                ++this.heatMap[math.format(angle, {precision: 5}).toString() + '_' + math.format(mag, {precision: 5}).toString()].value;
+                if (this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
+                    ++this.heatMap[math.format(angle, {precision: 5}).toString() + '_' + math.format(mag, {precision: 5}).toString()].value;
 
             }
         });
@@ -140,7 +135,6 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         this.panel.range[1] = newColor;
         this.refresh();
     }
-
 
     loadCircularHeatMap() {
         var dataset = Object.keys(this.heatMap).map(a => this.heatMap[a]);
