@@ -110,7 +110,7 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
                 var angle = Math.trunc(this.fixAngle2(a) / this.angStepSize) * this.angStepSize;
                 var nv = this.panel.nominalMagValue;
                
-                var mag = Math.trunc(((magPoints.datapoints[i][0] - nv)/nv)/this.panel.magStep) * this.panel.magStep;
+                var mag = Math.trunc(((magPoints.datapoints[i][0] - nv)*100/nv)/this.panel.magStep) * this.panel.magStep;
 
                 if (this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
                     ++this.heatMap[math.format(angle, {precision: 5}).toString() + '_' + math.format(mag, {precision: 5}).toString()].value;

@@ -83,7 +83,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"]
                             var a = d[0];
                             var angle = Math.trunc(_this.fixAngle2(a) / _this.angStepSize) * _this.angStepSize;
                             var nv = _this.panel.nominalMagValue;
-                            var mag = Math.trunc(((magPoints.datapoints[i][0] - nv) / nv) / _this.panel.magStep) * _this.panel.magStep;
+                            var mag = Math.trunc(((magPoints.datapoints[i][0] - nv) * 100 / nv) / _this.panel.magStep) * _this.panel.magStep;
                             if (_this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
                                 ++_this.heatMap[math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()].value;
                         }
