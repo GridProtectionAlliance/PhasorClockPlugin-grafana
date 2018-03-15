@@ -126,13 +126,8 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
     }
     // #endregion
 
-    setStartColor(newColor){
-        this.panel.range[0] = newColor;
-        this.refresh();
-    }
-
-    setEndColor(newColor){
-        this.panel.range[1] = newColor;
+    setColor(index, newColor){
+        this.panel.range[index] = newColor;
         this.refresh();
     }
 
@@ -240,14 +235,15 @@ class CircularHeatChart {
         this.innerRadius = innerRadius;
         this.numSegments = numSegments;
         this.segmentHeight = segmentHeight;
-        this.domain = null;
+        this.domain = null
         this.range = range;
         this.accessor = function (d) { return d.value; };
     }
 
     createChart(selection) {
         var ctrl = this;
-        selection.each(function(data){
+        selection.each(function (data) {
+            ctrl.domain = [0, 1, Math.max(...data.map(x => x.value))]
             var svg = d3.select(this);
 
             var offset: number = ctrl.innerRadius + Math.ceil(data.length / ctrl.numSegments) * ctrl.segmentHeight;
@@ -268,7 +264,9 @@ class CircularHeatChart {
                 .enter().append("path")
                 .attr("d", d3.arc().innerRadius(ctrl.ir.bind(ctrl)).outerRadius(ctrl.or.bind(ctrl)).startAngle(ctrl.sa.bind(ctrl)).endAngle(ctrl.ea.bind(ctrl)))
                 .attr("stroke", function (d) { return "#4f5b69"; })
-                .attr("fill", function (d) { return color(ctrl.accessor(d)); });
+                .attr("fill", function (d) {
+                        return color(ctrl.accessor(d));
+                });
         });
 
     }

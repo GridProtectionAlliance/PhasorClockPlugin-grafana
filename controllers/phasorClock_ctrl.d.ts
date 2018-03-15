@@ -15,8 +15,7 @@ export declare class PhasorClockCtrl extends MetricsPanelCtrl {
     onRender(): void;
     onDataRecieved(data: any): void;
     onDataError(msg: any): void;
-    setStartColor(newColor: any): void;
-    setEndColor(newColor: any): void;
+    setColor(index: any, newColor: any): void;
     loadCircularHeatMap(): void;
     fixAngle(angle: any): any;
     fixAngle2(angle: any): number;

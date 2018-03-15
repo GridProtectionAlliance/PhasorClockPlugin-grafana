@@ -43,8 +43,9 @@
             <label class="gf-form-label width-14">Color Range</label>
             <div class="graph-legend-popover">
                 <span class="gf-form-label">
-                    <color-picker color="ctrl.panel.range[0]" onChange="ctrl.setStartColor.bind(ctrl)"></color-picker>
-                    <color-picker color="ctrl.panel.range[1]" onChange="ctrl.setEndColor.bind(ctrl)"></color-picker>
+                    <color-picker color="ctrl.panel.range[0]" onChange="ctrl.setColor.bind(ctrl, 0)"></color-picker>
+                    <color-picker color="ctrl.panel.range[1]" onChange="ctrl.setColor.bind(ctrl, 1)"></color-picker>
+                    <color-picker color="ctrl.panel.range[2]" onChange="ctrl.setColor.bind(ctrl, 2)"></color-picker>
                 </span>
             </div>
         </div>

@@ -92,12 +92,8 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"]
                 };
                 PhasorClockCtrl.prototype.onDataError = function (msg) {
                 };
-                PhasorClockCtrl.prototype.setStartColor = function (newColor) {
-                    this.panel.range[0] = newColor;
-                    this.refresh();
-                };
-                PhasorClockCtrl.prototype.setEndColor = function (newColor) {
-                    this.panel.range[1] = newColor;
+                PhasorClockCtrl.prototype.setColor = function (index, newColor) {
+                    this.panel.range[index] = newColor;
                     this.refresh();
                 };
                 PhasorClockCtrl.prototype.loadCircularHeatMap = function () {
@@ -194,6 +190,7 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"]
                 CircularHeatChart.prototype.createChart = function (selection) {
                     var ctrl = this;
                     selection.each(function (data) {
+                        ctrl.domain = [0, 1, Math.max.apply(Math, data.map(function (x) { return x.value; }))];
                         var svg = d3_1.default.select(this);
                         var offset = ctrl.innerRadius + Math.ceil(data.length / ctrl.numSegments) * ctrl.segmentHeight;
                         var g = svg.append("g")
@@ -211,7 +208,9 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"]
                             .enter().append("path")
                             .attr("d", d3_1.default.arc().innerRadius(ctrl.ir.bind(ctrl)).outerRadius(ctrl.or.bind(ctrl)).startAngle(ctrl.sa.bind(ctrl)).endAngle(ctrl.ea.bind(ctrl)))
                             .attr("stroke", function (d) { return "#4f5b69"; })
-                            .attr("fill", function (d) { return color(ctrl.accessor(d)); });
+                            .attr("fill", function (d) {
+                            return color(ctrl.accessor(d));
+                        });
                     });
                 };
                 CircularHeatChart.prototype.ir = function (d, i) {
