@@ -79,14 +79,15 @@ System.register(["app/plugins/sdk", "jquery", "d3", "lodash", "./../js/math.js"]
                     var magPoints = data.find(function (a) { return a.target == _this.panel.phasorMag.Name; });
                     this.updateHeatMapObject();
                     lodash_1.default.each(anglePoints.datapoints, function (d, i) {
-                        if (magPoints.datapoints.length > i && magPoints.datapoints[i][1] == d[1]) {
-                            var a = d[0];
-                            var angle = Math.trunc(_this.fixAngle2(a) / _this.angStepSize) * _this.angStepSize;
-                            var nv = _this.panel.nominalMagValue;
-                            var mag = Math.trunc(((magPoints.datapoints[i][0] - nv) * 100 / nv) / _this.panel.magStep) * _this.panel.magStep;
-                            if (_this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
-                                ++_this.heatMap[math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()].value;
-                        }
+                        var magPoint = magPoints.datapoints.find(function (x) { return x[1] == d[1]; });
+                        if (magPoint == undefined)
+                            return;
+                        var a = d[0];
+                        var angle = Math.trunc(_this.fixAngle2(a) / _this.angStepSize) * _this.angStepSize;
+                        var nv = _this.panel.nominalMagValue;
+                        var mag = Math.trunc((magPoint[0] / nv) / _this.panel.magStep) * _this.panel.magStep;
+                        if (_this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
+                            ++_this.heatMap[math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()].value;
                     });
                     this.loadCircularHeatMap();
                 };

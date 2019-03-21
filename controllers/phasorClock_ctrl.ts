@@ -104,18 +104,16 @@ export class PhasorClockCtrl extends MetricsPanelCtrl{
         this.updateHeatMapObject();
 
         _.each(anglePoints.datapoints, (d, i) => {
-            if ( magPoints.datapoints.length > i && magPoints.datapoints[i][1] == d[1])
-            {
+            var magPoint = magPoints.datapoints.find(x => x[1] == d[1]);
+            if (magPoint == undefined) return;
                 var a = d[0];
                 var angle = Math.trunc(this.fixAngle2(a) / this.angStepSize) * this.angStepSize;
                 var nv = this.panel.nominalMagValue;
                
-                var mag = Math.trunc(((magPoints.datapoints[i][0] - nv)*100/nv)/this.panel.magStep) * this.panel.magStep;
+                var mag = Math.trunc((magPoint[0]/nv)/this.panel.magStep) * this.panel.magStep;
 
                 if (this.heatMap.hasOwnProperty(math.format(angle, { precision: 5 }).toString() + '_' + math.format(mag, { precision: 5 }).toString()))
                     ++this.heatMap[math.format(angle, {precision: 5}).toString() + '_' + math.format(mag, {precision: 5}).toString()].value;
-
-            }
         });
 
         this.loadCircularHeatMap(); 
