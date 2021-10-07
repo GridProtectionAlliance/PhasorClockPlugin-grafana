@@ -1,0 +1,55 @@
+﻿<div class="editor-row">
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Data Setup</h5>
+
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Magnitude</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.phasorMag" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Nominal Mag Value</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.nominalMagValue" ng-change="ctrl.updateSettings()" />
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-12">Angle</label>
+            <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.phasorAng" ng-options="t as t.Name for t in ctrl.elements track by t.id"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Graph Options</h5>
+
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Angle Segments</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.numAngSegments" ng-change="ctrl.updateSettings()"/>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Segments</label>
+            <input class="input-small gf-form-input"  type="number" ng-model="ctrl.panel.numMagSegments" ng-change="ctrl.updateSettings()"/>
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Step</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.magStep" ng-change="ctrl.updateSettings()" />
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Magnitude Start</label>
+            <input class="input-small gf-form-input" type="number" ng-model="ctrl.panel.magStart" ng-change="ctrl.updateSettings()" />
+        </div>
+        <div class="gf-form">
+            <label class="gf-form-label width-14">Color Range</label>
+            <div class="graph-legend-popover">
+                <span class="gf-form-label">
+                    <color-picker color="ctrl.panel.range[0]" onChange="ctrl.setColor.bind(ctrl, 0)"></color-picker>
+                    <color-picker color="ctrl.panel.range[1]" onChange="ctrl.setColor.bind(ctrl, 1)"></color-picker>
+                    <color-picker color="ctrl.panel.range[2]" onChange="ctrl.setColor.bind(ctrl, 2)"></color-picker>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

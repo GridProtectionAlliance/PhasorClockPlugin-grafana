@@ -1,0 +1,15 @@
+{
+  "name": "phasorclock-plugin",
+  "version": "0.0.0",
+  "description": "Phasorclock plugin typescript template.",
+  "scripts": {
+    "build": "grunt"
+  },
+  "author": "Grid Protection Alliance",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks"
+  }
+
+}
