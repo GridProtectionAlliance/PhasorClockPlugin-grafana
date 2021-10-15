@@ -1,15 +1,29 @@
 {
-  "name": "phasorclock-plugin",
+  "name": "phasorclock-react-plugin",
   "version": "0.0.0",
   "description": "Phasorclock plugin typescript template.",
-  "scripts": {
-    "build": "grunt"
-  },
   "author": "Grid Protection Alliance",
   "license": "MIT",
-  "dependencies": {},
+  "scripts": {
+    "build": "grafana-toolkit plugin:build",
+    "test": "grafana-toolkit plugin:test",
+    "dev": "grafana-toolkit plugin:dev",
+    "watch": "grafana-toolkit plugin:dev --watch"
+  },
+  "repository": "github:GridProtectionAlliance/PhasorClockPlugin-grafana",
+  "bugs": {
+    "url": "https://github.com/GridProtectionAlliance/PhasorClockPlugin-grafana/issues",
+    "email": "info@GridProtectionAlliance.org"
+  },
   "devDependencies": {
-    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks"
+    "@grafana/data": "^7.0.0",
+    "@grafana/toolkit": "^7.3.6",
+    "@grafana/ui": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=12 <13"
+  },
+  "dependencies": {
+    "@grafana/runtime": "^7.3.6"
   }
-
 }

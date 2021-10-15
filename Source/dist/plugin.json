@@ -1,19 +1,24 @@
 {
   "type": "panel",
   "name": "Phasor Clock Grafana Plugin",
-  "id": "phasorclock-plugin",
+  "id": "phasorclock-react-plugin",
 
   "info": {
-    "description": "Plugin Template for grafana",
+    "description": "React Phasor Clock for openHistorian Data",
     "author": {
       "name": "Grid Protection Alliance",
       "url": "http://www.gridprotectionalliance.org"
     },
-    "keywords": [ "template", "panel" ],
-    "logos": {
-      "small": "",
-      "large": ""
-    },
+    "keywords":  [
+       "openHistorian",
+       "panel",
+       "Phasors",
+	   "Phasor-Clock"
+     ],
+    "logos":  {
+       "small":  "images/gpa-lock.png",
+       "large":  "images/gpa-lock.png"
+     },
     "links": [
       {
         "name": "Project site",
@@ -27,7 +32,7 @@
   },
 
   "dependencies": {
-    "grafanaVersion": "4.6",
+    "grafanaVersion": "7.0.x",
     "plugins": []
   }
 }
