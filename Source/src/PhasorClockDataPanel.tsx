@@ -21,7 +21,10 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
     let radii = [];
     for (let r = options.MagStart; r < domain[1]; r = r + options.MagStep) {
       radii.push(r);
+      if (radii.length > 100)
+        break;
     }
+
     setCircleRadius(radii);
   }, [options.MagStart, options.MagStep, domain]);
 
