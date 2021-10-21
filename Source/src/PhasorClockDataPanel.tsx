@@ -173,8 +173,9 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
 
     const arrowLength = Math.min(v.Style.Size*10,radius*0.1);
     const arrowHeight = 0.7*arrowLength*0.5;
+
     return <g transform={`rotate(-${v.Ang}, ${centerX} ${centerY})`}>
-      <line x1={centerX} y1={centerY} x2={centerX + scale*v.Mag} y2={centerY} strokeWidth={v.Style.Size} stroke={v.Style.Color}/>
+      <line x1={centerX} y1={centerY} x2={centerX + scale*v.Mag - arrowLength} y2={centerY} strokeWidth={v.Style.Size} stroke={v.Style.Color}/>
       <polygon 
       points={`${centerX + scale*v.Mag } ${centerY}, ${centerX + scale*v.Mag - arrowLength} ${centerY - arrowHeight}, ${centerX + scale*v.Mag - arrowLength} ${centerY + arrowHeight}`}
       fill={v.Style.Color}/>
