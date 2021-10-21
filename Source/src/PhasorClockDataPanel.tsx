@@ -214,6 +214,7 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
         <svg width={width} height={height}>
          {circleRadius.map((r,i) => <circle cx={centerX} cy={centerY} strokeWidth={1} stroke={options.backgroundColor} r={scale*r} fill={'none'}/>)}
          <circle cx={centerX} cy={centerY} strokeWidth={2} stroke={options.backgroundColor} r={scale*options.Nominal} fill={'none'}/>
+         <circle cx={centerX} cy={centerY} strokeWidth={1} stroke={options.backgroundColor} r={radius} fill={'none'}/>
          {lineAngle.map((a,i) => <g transform={`rotate(-${a}, ${centerX} ${centerY})`}>
             <line x1={centerX} y1={centerY} x2={centerX + radius} y2={centerY} strokeWidth={1} stroke={options.backgroundColor}/>
            </g>
