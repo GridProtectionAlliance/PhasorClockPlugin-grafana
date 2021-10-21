@@ -1,6 +1,6 @@
 import React from 'react';
-import { PanelProps, FieldType, getDisplayProcessor } from '@grafana/data';
-import { SimpleOptions } from 'types';
+import { PanelProps, FieldType, getDisplayProcessor, Vector, Field } from '@grafana/data';
+import { DataAggregation, SimpleOptions } from 'types';
 import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 
@@ -65,13 +65,15 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
         const valueField = d.fields.find((field) => field.type === FieldType.number);
         if (valueField == undefined)
           return 0;
-        return valueField?.values.get(0)
+        return calcValue(valueField)
       });
     }
     else {
       magnitudes = data.series.filter(f => f.refId == options.magRef).map((d) => {
         const valueField = d.fields.find((field) => field.type === FieldType.number);
-        return valueField?.values.get(0)
+        if (valueField == undefined)
+          return 0;
+        return calcValue(valueField)
       });
     }
 
@@ -106,7 +108,9 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
     {
       phases = data.series.map((d) => {
         const valueField = d.fields.find((field) => field.type === FieldType.number);
-        return valueField?.values.get(0)
+        if (valueField == undefined)
+          return 0;
+        return calcValue(valueField)
       });
       
     }
@@ -114,7 +118,9 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
     else {
       phases = data.series.filter(f => f.refId == options.phasorRef).map((d) => {
         const valueField = d.fields.find((field) => field.type === FieldType.number);
-        return valueField?.values.get(0)
+        if (valueField == undefined)
+          return 0;
+        return calcValue(valueField)
       });
     }
 
@@ -174,6 +180,26 @@ export const PhasorClockPanel: React.FC<Props> = ({ options, data, width, height
       fill={v.Style.Color}/>
     </g>
   }
+
+  function calcValue(fld: Field<any, Vector<any>>): number{
+    const agg: DataAggregation = fld.config.custom["DataAgg"];
+
+    if (agg == 'average')
+      return fld.state?.calcs?.mean ?? 0;
+    if (agg == 'min')
+      return fld.state?.calcs?.min ?? 0;
+    if (agg == 'max')
+      return fld.state?.calcs?.max ?? 0;
+    if (agg == 'sum')
+      return fld.state?.calcs?.sum ?? 0;
+    if (agg == 'count')
+      return fld.state?.calcs?.count ?? 0;
+    if (agg == 'last')
+      return fld.state?.calcs?.lastNotNull ?? 0;
+    
+    return fld.values.get(0);
+  }
+
 
   return (
     <div className={cx(styles.wrapper, css`

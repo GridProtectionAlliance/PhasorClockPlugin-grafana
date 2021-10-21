@@ -1,5 +1,5 @@
 import { FieldConfigProperty, PanelPlugin } from '@grafana/data';
-import { SimpleOptions} from './types';
+import { DataAggregation, SimpleOptions} from './types';
 import { PhasorClockPanel } from './PhasorClockDataPanel';
 import { ReferenceSelector} from './ReferenceSelector';
 
@@ -82,6 +82,20 @@ export const plugin = new PanelPlugin<SimpleOptions>(PhasorClockPanel).useFieldC
         options:[
           {value: 'phase', label: 'Phase' },
           {value: 'mag', label: 'Magnitude' }
+       ]}
+    }).addSelect({
+      path: 'DataAgg',
+      name: 'Data Aggregation',
+      description: "Method used to Aggregate the TimeSeries Data",
+      defaultValue: 'average' as DataAggregation,
+      settings: { 
+        options:[
+          {value: 'average' as DataAggregation, label: 'Average' },
+          {value: 'last' as DataAggregation, label: 'Last Not Null' },
+          {value: 'min' as DataAggregation, label: 'Min' },
+          {value: 'max' as DataAggregation, label: 'Max' },
+          {value: 'sum' as DataAggregation, label: 'Sum' },
+          {value: 'count' as DataAggregation, label: 'Count' }
        ]}
     });
     

@@ -13,3 +13,5 @@ export interface SimpleOptions {
   magRef: string,
   stylingRef: string,
 }
+
+export type DataAggregation = ('min'|'max'|'last'|'average'|'count'|'sum')
