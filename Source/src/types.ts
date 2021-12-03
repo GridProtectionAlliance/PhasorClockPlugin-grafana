@@ -14,4 +14,4 @@ export interface SimpleOptions {
   stylingRef: string,
 }
 
-export type DataAggregation = ('min'|'max'|'last'|'average'|'count'|'sum')
+export type DataAggregation = ('min'|'max'|'last'|'average'|'count'|'sum'|'heatmap')
